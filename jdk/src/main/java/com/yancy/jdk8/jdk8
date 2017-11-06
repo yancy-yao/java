@@ -1,0 +1,58 @@
+一、java8新特性
+    1、流处理
+        java 8 在java.util.stream中添加了一个Stream API；迭代器
+    2、用行为参数化把代码传递给方法（行为参数化）
+        通过API来传递代码。
+        用 ：：语法
+    3、并行与共享的可变数据
+    4、Lambda-匿名函数
+    5、默认方法
+        接口可以包含实现类没有提供实现的方法签名。 default关键字；
+        问题：如果在好几个接口里有多个默认方法，是否意味着java中有了某种形式的多重继承？
+        答：是的，在某种程度上是这样。
+
+二、通过行为参数化传递代码
+
+三、Lambda表达式
+    java8中有效的Lambda表达式
+        (String s) -> s.length()
+        (Apple a) -> a.getWeight() > 150
+        (int x, int y) -> {
+            System.out.println("Result:");
+            System.out.println(x+y);
+        }
+        () -> 42
+        (Apple a1, Apple a2) -> a1.getWeight().compareTo(a2.getWeight())
+
+     示例：
+        布尔表达式            (List<String> list) -> list.isEmpty();
+        创建对象              () -> new Apple(10)
+        消费一个对象          (Apple a) -> {System.out.println(a.getWeight())}
+        从一个对象中选择/抽取 (String s) -> s.length()
+        组合两个值            (int a, int b) -> a*b
+        比较两个对象          (Apple a1, Apple a2) -> a1.getWeight().compareTo(a2.getWeight())
+
+    使用：
+        在函数式接口上使用Lambda表达式。
+        函数式接口：@FunctionalInterface
+            只定义一个抽象方法的接口。
+            备注：接口拥有默认方法defalut修饰，只要接口只定义了一个抽象方法，仍然是一个函数式接口。
+    Comparable、Runnable、Callable等
+    java8新增：
+        java.util.function：
+            Predicate
+            Consumer
+            Function
+
+    方法引用
+        Lambda                                               等效的方法引用
+        (Apple a) -> a.getWeight()                         Apple::getWeight()
+        () -> Thread.currentThread().dumpStack()           Thread.currentThread()::dumpStack
+        (str, i) -> str.substring(i)                       String::substring
+        (String s) -> System.out.println(s)                System.out:println
+
+        如何构建方法引用
+            （1）指向静态方法的方法引用（例如Integer的parseInt，写作 Integer::parseInt）;
+            （2）指向任意类型实例方法的方法引用（例如String的length方法，写作 String::length）;
+            （3）指向现有对象的实例方法的方法引用（例如有一个局部变量expensiveTransaction用于存放Transaction类型的
+            对象，它支持实例方法getValue，写作expensiveTransaction::getValue）。
