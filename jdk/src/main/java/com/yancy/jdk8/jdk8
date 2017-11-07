@@ -56,3 +56,11 @@
             （2）指向任意类型实例方法的方法引用（例如String的length方法，写作 String::length）;
             （3）指向现有对象的实例方法的方法引用（例如有一个局部变量expensiveTransaction用于存放Transaction类型的
             对象，它支持实例方法getValue，写作expensiveTransaction::getValue）。
+
+
+四、默认方法
+    java8允许在接口内声明静态方法；
+    java8引入一个新功能，叫默认方法，通过默认方法可以指定接口方法的默认实现。（接口能提供方法的具体实现，因此，实现
+接口的类如果不显式地提供该方法的具体实现，就会自动继承默认的实现）
+
+五、Optional取代Null
